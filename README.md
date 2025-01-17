@@ -1,4 +1,4 @@
-# Rock-Paper-Scisors
+# Rock-Paper-Scissors
 
 It is my first project written in JavaScript since 2022.
 It is not like I need any of this practice... 
