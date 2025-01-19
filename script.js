@@ -52,8 +52,8 @@ function playRound(humanChoice, computerChoice) {
     } else if(computerScore >= 5) {
         winningTitle.innerText = 'Computer wins the game!';
     }
-    humanScoreDiv.innerText = humanScore;
-    computerScoreDiv.innerText = computerScore;
+    humanScoreDiv.innerText = "Player score: " + humanScore;
+    computerScoreDiv.innerText = "Computer score: " + computerScore;
 }
 
 const buttons = document.querySelectorAll("button");
