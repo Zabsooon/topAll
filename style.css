@@ -12,3 +12,12 @@ body {
     justify-content: center;
 }
 
+#color_palette {
+    background-color: #aaabab;
+    width: 640px;
+    margin: auto;
+    padding: 10px 0 10px 0;
+    border: 2px solid white;
+    display: flex;
+    justify-content: space-evenly;
+}
