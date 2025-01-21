@@ -12,6 +12,25 @@ body {
     justify-content: center;
 }
 
+#size_palette {
+    background-color: #aaabab;
+    width: 640px;
+    margin: auto;
+    padding: 10px 0 10px 0;
+    border: 2px solid white;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#size_palette > div {
+    padding: 15px;
+    border: 2px solid black;
+}
+
+#size_palette > div:hover {
+    background-color: #731927;
+}
+
 #color_palette {
     background-color: #aaabab;
     width: 640px;

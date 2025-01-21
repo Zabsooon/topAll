@@ -1,4 +1,6 @@
 function createGrid(height, width) {
+    currentGridHeight = height;
+    currentGridWidth = width;
     const container = document.querySelector("#container");
     for(let i = 0; i < height; i++) {
         let row = document.createElement("div");
@@ -17,10 +19,46 @@ function createGrid(height, width) {
     }   
 }
 
-function createColorPalette() {
-    const pallete = document.querySelector("#color_palette")
+function deleteGrid() {
+    const container = document.querySelector("#container");
 
-    const palleteColors = [
+    while(container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
+}
+
+function createSizePalette() {
+    const size_palette = document.querySelector("#size_palette");
+    
+    let btn8 = document.createElement("div");
+    btn8.addEventListener("click", () => {
+        deleteGrid();
+        createGrid(8, 8);
+    });
+    let btn16 = document.createElement("div");
+    btn16.addEventListener("click", () => {
+        deleteGrid();
+        createGrid(16, 16);
+    });
+    let btn32 = document.createElement("div");
+    btn32.addEventListener("click", () => {
+        deleteGrid();
+        createGrid(32, 32);
+    });
+    
+    btn8.innerText = "8x8";
+    btn16.innerText = "16x16";
+    btn32.innerText = "32x32";
+    
+    size_palette.appendChild(btn8);
+    size_palette.appendChild(btn16);
+    size_palette.appendChild(btn32);
+}
+
+function createColorPalette() {
+    const palette = document.querySelector("#color_palette");
+
+    const paletteColors = [
         '#b4de76', 
         '#76d5de', 
         '#de76da', 
@@ -30,7 +68,7 @@ function createColorPalette() {
         '#47130d'
     ];
     
-    for(let color of palleteColors) {
+    for(let color of paletteColors) {
         let btn = document.createElement("div");
         btn.style.backgroundColor = color;
         btn.style.width = '40px';
@@ -40,11 +78,14 @@ function createColorPalette() {
             brushcolor = color;
         });
 
-        pallete.appendChild(btn);
-    }    
+        palette.appendChild(btn);
+    }
 }
 
 let brushcolor = '#b4de76';
+let currentGridWidth = 32;
+let currentGridHeight = 32;
 
 createGrid(32, 32);
 createColorPalette();
+createSizePalette();
