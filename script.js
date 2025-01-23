@@ -27,7 +27,35 @@ function operate(operator, left, right) {
     }
 }
 
+let leftNumber = '';
+let rightNumber = '';
+let operator = '';
 
-let leftNumber = undefined;
-let rightNumber = undefined;
-let operator = undefined;
+/* Number buttons functionality */
+function addOnClicksToNumberButtons() {
+    const buttons = document.querySelectorAll('.number');
+    buttons.forEach((button) => button.addEventListener("click", (e) => {
+        if(operator === '') {
+            if(!(leftNumber == '' && e.target.innerText == '0')) { 
+                leftNumber += e.target.innerText;
+            }
+        } else if (leftNumber !== '' && operator !== '') {
+            rightNumber += e.target.innerText;
+        }
+        console.log(`Left number: ${leftNumber}`);
+        console.log(`Right number: ${rightNumber}`);
+    }));
+}
+
+function addOnClicksToOperationButtons() {
+    const buttons = document.querySelectorAll('.operation');
+    buttons.forEach((button) => button.addEventListener("click", (e) => {
+        if(leftNumber !== '0' || leftNumber !== '') {
+            operator = e.target.innerText;
+        }
+        console.log(`Operator: ${operator}`)
+    }));
+}
+
+addOnClicksToNumberButtons();
+addOnClicksToOperationButtons();
