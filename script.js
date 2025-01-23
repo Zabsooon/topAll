@@ -1,3 +1,70 @@
+let tempNumber = '';
+let operator = '';
+let isDecimal = false;
+
+function reset() {
+    isDecimal = false;
+    value.innerText = "";
+    operator = '';
+    tempNumber = '';
+}
+
+function operate() {
+    
+}
+
+function addFunctionalityToAllButtons() {
+    let value = document.querySelector('#value');
+    
+    /* operations */ 
+    const operationButtons = document.querySelectorAll('.operation');
+    operationButtons.forEach((button) => button.addEventListener("click", (e) => {
+        switch(e.target.value) {
+            case 'clear':
+                reset();
+               break;
+            case 'sign':
+                break;
+            case 'percent':
+                console.log('functionality to work on %');
+                break;
+            case '/':
+            case '*':
+            case '-':
+            case '+':
+                if(tempNumber === '') {                    
+                    tempNumber = value.innerText;
+                    value.innerText = '';
+                    operator = e.target.value;
+                } 
+                break;
+            case 'equals':
+                let temp = operate(operator, tempNumber, value.innerText);
+                reset();
+                value.innerText = temp;
+                break;
+            case 'decimal':
+                if(isDecimal == false) {
+                    value.innerText += '.';
+                    isDecimal = true;
+                }
+                break;
+        }
+    }));
+
+    const numberButtons = document.querySelectorAll('.number');
+    numberButtons.forEach((button) => button.addEventListener("click", (e) => {
+        if(!(value.innerText === '' && e.target.value === '0')) {
+            if(value.innerText.length < 22) {
+                value.innerText += e.target.value;
+            }
+        }
+    }));
+}
+
+addFunctionalityToAllButtons();
+
+
 function add(left, right) {
     return left + right;
 }
@@ -26,36 +93,3 @@ function operate(operator, left, right) {
             return divide(left, right);
     }
 }
-
-let leftNumber = '';
-let rightNumber = '';
-let operator = '';
-
-/* Number buttons functionality */
-function addOnClicksToNumberButtons() {
-    const buttons = document.querySelectorAll('.number');
-    buttons.forEach((button) => button.addEventListener("click", (e) => {
-        if(operator === '') {
-            if(!(leftNumber == '' && e.target.innerText == '0')) { 
-                leftNumber += e.target.innerText;
-            }
-        } else if (leftNumber !== '' && operator !== '') {
-            rightNumber += e.target.innerText;
-        }
-        console.log(`Left number: ${leftNumber}`);
-        console.log(`Right number: ${rightNumber}`);
-    }));
-}
-
-function addOnClicksToOperationButtons() {
-    const buttons = document.querySelectorAll('.operation');
-    buttons.forEach((button) => button.addEventListener("click", (e) => {
-        if(leftNumber !== '0' || leftNumber !== '') {
-            operator = e.target.innerText;
-        }
-        console.log(`Operator: ${operator}`)
-    }));
-}
-
-addOnClicksToNumberButtons();
-addOnClicksToOperationButtons();
