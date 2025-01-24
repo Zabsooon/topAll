@@ -24,27 +24,36 @@ function addFunctionalityToAllButtons() {
                 reset();
                break;
             case 'sign':
+                value.innerText = parseFloat(value.innerText) * (-1);
                 break;
             case 'percent':
-                console.log('functionality to work on %');
+                value.innerText = parseFloat(value.innerText) / 100;
                 break;
             case '/':
             case '*':
             case '-':
             case '+':
                 if(tempNumber === '') {                    
+                    isDecimal = false;
                     tempNumber = value.innerText;
                     value.innerText = '';
                     operator = e.target.value;
                 } 
                 break;
             case 'equals':
-                let temp = operate(operator, tempNumber, value.innerText);
-                reset();
-                value.innerText = temp;
+                if(tempNumber !== '') {
+                    let temp = operate(operator, tempNumber, value.innerText);
+                    reset();
+                    value.innerText = temp;
+                }
+                
                 break;
             case 'decimal':
+
                 if(isDecimal == false) {
+                    if(value.innerText === '') {
+                        value.innerText = '0';
+                    }
                     value.innerText += '.';
                     isDecimal = true;
                 }
@@ -66,7 +75,7 @@ addFunctionalityToAllButtons();
 
 
 function add(left, right) {
-    return left + right;
+    return parseInt(left) + parseInt(right);
 }
 
 function subtract(left, right) {
