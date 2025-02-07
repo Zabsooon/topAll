@@ -1,7 +1,132 @@
-:root {
-    --background-color: #323232;
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
-body {
-    background-color: var(--background-color);
+.container {
+    display: flex;
+    flex-direction: row; 
+    height: 50rem;
+}
+
+.container > .left {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    justify-content: baseline;
+    align-items: center;
+    background-image: url(./image.jpg);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: 100% 100%;
+    overflow: auto;
+    height: 100%;
+}
+
+.container > .left > .img_sign { 
+    position: relative;
+    margin-top: auto;
+    flex: 0;
+}
+
+a:visited {
+    color: #ffaaff;
+    text-decoration: none;
+}
+
+a:active {
+    color: peru;
+    text-decoration: none;
+}
+
+a:link {
+    color: #33ff33;
+    text-decoration: none;
+}
+
+.left > .floater {
+    background-color: rgba(50, 50, 50, 0.5);
+    text-align: center;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-top: 15%;
+    flex-basis: 1;
+    position: sticky;
+    align-self: flex-end;
+    height: auto;
+}
+
+.container > .right {
+    display: flex;
+    flex-direction: column;
+    flex: 2 1 0;
+    justify-content: baseline;
+}
+
+.container > .right > .top {
+    padding: 3rem;
+    margin: 0 auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    justify-content: center;
+    width: 35%;
+}
+
+.container > .right > .bottom {
+    display: flex;
+    flex-direction: column;
+}
+
+.input_fields {
+    box-shadow: 0px 10px 20px -2px rgb(22, 22, 22);
+    margin-bottom: 20px;
+}
+
+.signup_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup_form > .input_fields > fieldset {
+    display: flex;
+    flex-direction: row;
+    border: 0;
+}
+
+.signup_form > .input_fields > fieldset > div {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border-radius: 5px;
+    border: 2px solid black;
+    margin: 10px;
+    padding: 5px;
+}
+
+input:valid {
+    border: 2px solid green;
+}
+
+input:invalid {
+    border: 2px solid red;
+}
+
+button[type='submit'] {
+    background-color: #33ff33;
+    box-shadow: 0 10px 20px -2px rgb(22, 22, 22);
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px;
+    width: 30%;
+}
+
+.signup_form > p {
+    margin: 10px;
 }
