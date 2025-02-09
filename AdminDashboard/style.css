@@ -6,7 +6,7 @@ body {
     display: grid;
     font-size: 24px;
     grid-template-columns: 30vw;
-    background-color: #8989ff;
+    background-color: #9276f7;
     grid-area: sidebar;
 }
 
@@ -39,10 +39,66 @@ body {
 }
 
 .header {
+    padding: 1.5rem;
+    align-items: center;
     grid-area: header;
+    background-color: #8989ff;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(2, 40%);
+}
+
+.header > .search_icon {
+    background-color: #cbcbcb;
+    height: clamp(30px, 10%, 80px);
+    width: clamp(30px, 10%, 80px);
+    border: 0;
+    border-radius: 100%;
+    margin: auto 5% auto auto;
+}
+
+.header > .search_input {
+    height: clamp(30px, 30%, 80px);
+    border-radius: 100px;
+    border: 0;
+    background-color:#cbcbcb;
+}
+
+.header > .notification_button {
+    border: 0;
+    border-radius: 100%;
+    width: clamp(40px, 10%, 80px);
+    height: clamp(40px, 10%, 80px);
+    margin: auto 0 auto auto;
+}
+
+.header > .small_profile_icon {
+    border: 0;
+    border-radius: 100%;
+    width: clamp(60px, 10%, 100px);
+    height: clamp(60px, 10%, 100px);
+    margin: auto;
+}
+
+.header > .big_profile_icon {
+    border: 0;
+    border-radius: 100%;
+    width: clamp(100px, 10%, 200px);
+    height: clamp(100px, 10%, 200px);
+}
+
+.header > .nav_button {
+    justify-content: center; 
+    margin: auto auto 0 auto;
+    border-radius: 100px;
+    width: clamp(100px, 60%, 250px);
+    height: clamp(45px, 45%, 100px);
+    background-color: paleturquoise;
+    border: 0;
 }
 
 .main {
+    background-color: #a2a2f3;
     grid-area: main;
 }
 
