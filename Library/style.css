@@ -1,3 +1,23 @@
 body {
     background-color: #232323;
 }
+
+#addBookForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#library {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-rows: repeat(8, 1fr);
+    gap: 1%;
+}
+
+.book {
+    background-color: #783398;
+    border: 2px solid #cccccc;
+    border-radius: 0.5rem;
+    min-width: 150px;
+    text-align: center;
+}
