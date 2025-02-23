@@ -41,4 +41,4 @@ class Project {
     }
 }
 
-export default { Project, Todo };
+export { Project, Todo };
