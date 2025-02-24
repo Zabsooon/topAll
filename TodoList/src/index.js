@@ -64,4 +64,50 @@ function buildLeftPageDOM() {
   leftDiv.appendChild(createProjectBtn);
 }
 
+function buildRightPageDOM() {
+
+  let rightDiv = document.querySelector('#right');
+
+  let createTodoDialog = document.createElement('dialog');
+  let createTodoBtn = document.createElement('button'); /* Shows dialog with create todo button */
+  createTodoBtn.innerText = 'Create New Todo';
+
+  createTodoBtn.addEventListener('click', () => {
+    createTodoDialog.show();
+  });
+
+  let createTodoForm = document.createElement('form');
+  createTodoForm.setAttribute('method', 'dialog');
+
+  let createTodoElements = ['Title', 'Description', 'DueDate', 'Priority', 'Status'];
+  let createTodoLabels = [];
+  let createTodoInputs = [];
+  for(let element of createTodoElements) {
+    let tempLabel = document.createElement('label');
+    tempLabel.setAttribute('for', `todo${element}`);
+    tempLabel.innerText = `Todo ${element}`;
+    let tempInput = document.createElement('input');
+    tempLabel.setAttribute('name', `todo${element}`);
+    tempLabel.setAttribute('id', `todo${element}`);
+
+    createTodoForm.appendChild(tempLabel);
+    createTodoForm.appendChild(tempInput);
+  }
+
+  let createTodoSubmitBtn = document.createElement('button');
+  createTodoSubmitBtn.setAttribute('type', 'submit');
+  createTodoSubmitBtn.innerText = 'Create';
+
+  createTodoSubmitBtn.addEventListener('click', () => {
+    console.log('Added Todo temp console.log');
+  });
+  
+  createTodoForm.appendChild(createTodoSubmitBtn);
+  createTodoDialog.appendChild(createTodoForm);
+
+  rightDiv.appendChild(createTodoDialog);
+  rightDiv.appendChild(createTodoBtn);
+}
+
 buildLeftPageDOM();
+buildRightPageDOM();
