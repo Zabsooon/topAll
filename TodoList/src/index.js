@@ -41,9 +41,16 @@ function buildLeftPageDOM() {
   createProjectNameInput.setAttribute('id', 'projectName');
 
   let createProjectSubmitBtn = document.createElement('button');
+  createProjectSubmitBtn.setAttribute('type', 'submit');
   createProjectSubmitBtn.innerText = 'Create';
 
-  createProjectSubmitBtn.addEventListener('click', () => console.log('Added Project temp console.log'));
+  createProjectSubmitBtn.addEventListener('click', (e) => {
+    let icon = e.target.parentElement[0].value; 
+    let name = e.target.parentElement[1].value;
+    projects.push(new Project(name, icon));
+
+    console.log(projects);
+  });
 
   createProjectForm.appendChild(createProjectIconLabel);
   createProjectForm.appendChild(createProjectIconInput);
