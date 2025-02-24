@@ -3,40 +3,58 @@ import { Project, Todo } from "./project";
 
 let projects = [];
 
+/*
+ * This function creates objects and apply them to the html,
+ * therefore they are being generated on the page.
+ */
+function buildLeftPageDOM() {
+
+  let leftDiv = document.querySelector('#left');
+  let createProjectDialog = document.createElement('dialog');
+  let createProjectBtn = document.createElement('button'); /* Shows the dialog with creation form */
+  createProjectBtn.innerText = 'Create New Project';
+
+  createProjectBtn.addEventListener('click', () => {
+  /*
+   * Show the dialog.
+   * Maybe abstract this.
+   */
+    createProjectDialog.show();
+  });
 
 
+  let createProjectForm = document.createElement('form');
+  createProjectForm.setAttribute('method', 'dialog');
 
-let leftDiv = document.querySelector('#left');
+  let createProjectIconLabel = document.createElement('label');
+  createProjectIconLabel.setAttribute('for', 'projectIcon');
+  createProjectIconLabel.innerText = 'Project Icon';
+  let createProjectIconInput = document.createElement('input');
+  createProjectIconInput.setAttribute('name', 'projectIcon');
+  createProjectIconInput.setAttribute('id', 'projectIcon');
 
-let addProjectBtn = document.createElement('button');
+  let createProjectNameLabel = document.createElement('label');
+  createProjectNameLabel.setAttribute('for', 'projectName');
+  createProjectNameLabel.innerText = 'Project Name';
+  let createProjectNameInput = document.createElement('input');
+  createProjectNameInput.setAttribute('name', 'projectName');
+  createProjectNameInput.setAttribute('id', 'projectName');
 
-addProjectBtn.setAttribute('id', 'createProject');
+  let createProjectSubmitBtn = document.createElement('button');
+  createProjectSubmitBtn.innerText = 'Create';
 
-leftDiv.appendChild(addProjectBtn);
-/* Generate dialog functionality for project creation */
+  createProjectSubmitBtn.addEventListener('click', () => console.log('Added Project temp console.log'));
 
-let projectDialog = document.createElement('dialog');
-projectDialog.setAttribute('id', 'projectDialog');
+  createProjectForm.appendChild(createProjectIconLabel);
+  createProjectForm.appendChild(createProjectIconInput);
+  createProjectForm.appendChild(createProjectNameLabel);
+  createProjectForm.appendChild(createProjectNameInput);
+  createProjectForm.appendChild(createProjectSubmitBtn);
 
-let projectCreationForm = document.createElement('form');
-let projectCreationIconLabel = document.createElement('label');
-let projectCreationIconInput = document.createElement('input');
-let projectCreationNameLabel = document.createElement('label');
-let projectCreationNameInput = document.createElement('input');
+  createProjectDialog.appendChild(createProjectForm);
 
-projectCreationForm.appendChild(projectCreationIconLabel);
-projectCreationForm.appendChild(projectCreationIconInput);
+  leftDiv.appendChild(createProjectDialog);
+  leftDiv.appendChild(createProjectBtn);
+}
 
-projectCreationForm.appendChild(projectCreationNameLabel);
-projectCreationForm.appendChild(projectCreationNameInput);
-
-projectDialog.appendChild(projectCreationForm);
-
-leftDiv.appendChild(projectDialog);
-
-    
-
-
-
-/* Note for myself: Firstly just add stuff here, generate the site and then I will create
-separate classes for genarating DOM, adding stuff etc. */
+buildLeftPageDOM();
