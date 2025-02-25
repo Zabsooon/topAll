@@ -2,7 +2,6 @@ import { createProjectDOM, createTodoDOM, leftRefreshDOM, rightRefreshDOM, state
 import { Project, Todo } from "./project";
 
 state.selectedProjectIndex = 0;
-
 /*
  * This function creates objects and apply them to the html,
  * therefore they are being generated on the page.
@@ -107,4 +106,8 @@ function buildRightPageDOM() {
 buildLeftPageDOM();
 
 /* This should happen onClick on the project tab (selection) */
-buildRightPageDOM();
+if(state.selectedProjectIndex < 0 || state.projects.length <= 0) {
+  buildRightPageDOM();
+}
+
+
