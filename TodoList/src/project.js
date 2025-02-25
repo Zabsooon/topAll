@@ -2,7 +2,8 @@ import Todo from "./todo";
 
 class Project {
 
-    constructor(name, icon) {
+    constructor(id, name, icon) {
+        this._id = id;
         this._name = name;
         this._icon = icon;
         this._todo_list = [];
@@ -16,6 +17,10 @@ class Project {
         this.addTodo(new Todo(title, description, dueDate, priority, status));
     }
 
+    get id() {
+        return this._id;
+    }
+
     get name() {
         return this._name;
     }
@@ -26,6 +31,10 @@ class Project {
 
     get todo_list() {
         return this._todo_list;
+    }
+
+    set id(value) {
+        this._id = value;
     }
 
     set name(value) {

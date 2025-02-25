@@ -1,68 +1,65 @@
-import { createProjectDOM, createTodoDOM } from "./dom_project";
+import { createProjectDOM, createTodoDOM, leftRefreshDOM, rightRefreshDOM, state } from "./dom_project";
 import { Project, Todo } from "./project";
 
-let projects = [];
+state.selectedProjectIndex = 0;
 
 /*
  * This function creates objects and apply them to the html,
  * therefore they are being generated on the page.
  */
 function buildLeftPageDOM() {
-
   let leftDiv = document.querySelector('#left');
+  leftDiv.innerHTML = ''; // Prevent duplication
+
   let createProjectDialog = document.createElement('dialog');
-  let createProjectBtn = document.createElement('button'); /* Shows the dialog with creation form */
+  createProjectDialog.setAttribute('id', 'createProjectDialog');
+
+  let createProjectBtn = document.createElement('button'); // Shows the dialog
   createProjectBtn.innerText = 'Create New Project';
 
   createProjectBtn.addEventListener('click', () => {
-  /*
-   * Show the dialog.
-   * Maybe abstract this.
-   */
-    createProjectDialog.show();
+    console.log("Opening project creation dialog"); // Debugging
+    createProjectDialog.showModal();
   });
-
 
   let createProjectForm = document.createElement('form');
   createProjectForm.setAttribute('method', 'dialog');
 
-  let createProjectIconLabel = document.createElement('label');
-  createProjectIconLabel.setAttribute('for', 'projectIcon');
-  createProjectIconLabel.innerText = 'Project Icon';
-  let createProjectIconInput = document.createElement('input');
-  createProjectIconInput.setAttribute('name', 'projectIcon');
-  createProjectIconInput.setAttribute('id', 'projectIcon');
-
   let createProjectNameLabel = document.createElement('label');
-  createProjectNameLabel.setAttribute('for', 'projectName');
   createProjectNameLabel.innerText = 'Project Name';
   let createProjectNameInput = document.createElement('input');
-  createProjectNameInput.setAttribute('name', 'projectName');
   createProjectNameInput.setAttribute('id', 'projectName');
 
   let createProjectSubmitBtn = document.createElement('button');
-  createProjectSubmitBtn.setAttribute('type', 'submit');
   createProjectSubmitBtn.innerText = 'Create';
 
   createProjectSubmitBtn.addEventListener('click', (e) => {
-    let icon = e.target.parentElement[0].value; 
-    let name = e.target.parentElement[1].value;
-    projects.push(new Project(name, icon));
+    e.preventDefault(); // Prevent immediate form close
 
-    console.log(projects);
+    let name = createProjectNameInput.value.trim();
+    if (!name) {
+      alert("Project name cannot be empty.");
+      return;
+    }
+    let newProject = new Project(name, 'default-icon');
+    state.projects.push(newProject);
+    state.selectedProjectIndex = state.projects.length - 1; // Select the new project
+    console.log("Created project:", newProject.name);
+
+    createProjectDOM(newProject); // Add to DOM
+    rightRefreshDOM(); // Update right panel
+    createProjectDialog.close();
   });
 
-  createProjectForm.appendChild(createProjectIconLabel);
-  createProjectForm.appendChild(createProjectIconInput);
   createProjectForm.appendChild(createProjectNameLabel);
   createProjectForm.appendChild(createProjectNameInput);
   createProjectForm.appendChild(createProjectSubmitBtn);
-
   createProjectDialog.appendChild(createProjectForm);
 
   leftDiv.appendChild(createProjectDialog);
   leftDiv.appendChild(createProjectBtn);
 }
+
 
 function buildRightPageDOM() {
 
@@ -73,15 +70,13 @@ function buildRightPageDOM() {
   createTodoBtn.innerText = 'Create New Todo';
 
   createTodoBtn.addEventListener('click', () => {
-    createTodoDialog.show();
+    createTodoDialog.showModal();
   });
 
   let createTodoForm = document.createElement('form');
   createTodoForm.setAttribute('method', 'dialog');
 
   let createTodoElements = ['Title', 'Description', 'DueDate', 'Priority', 'Status'];
-  let createTodoLabels = [];
-  let createTodoInputs = [];
   for(let element of createTodoElements) {
     let tempLabel = document.createElement('label');
     tempLabel.setAttribute('for', `todo${element}`);
@@ -99,7 +94,7 @@ function buildRightPageDOM() {
   createTodoSubmitBtn.innerText = 'Create';
 
   createTodoSubmitBtn.addEventListener('click', () => {
-    console.log('Added Todo temp console.log');
+    rightRefreshDOM();
   });
   
   createTodoForm.appendChild(createTodoSubmitBtn);
@@ -110,4 +105,6 @@ function buildRightPageDOM() {
 }
 
 buildLeftPageDOM();
+
+/* This should happen onClick on the project tab (selection) */
 buildRightPageDOM();
