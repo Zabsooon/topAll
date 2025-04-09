@@ -1,0 +1,9 @@
+node_modules/
+dist/
+build/
+.DS_Store
+*.log
+
+# WebpackTemplate-specific exclusions
+./WebpackTemplate/node_modules/
+./WebpackTemplate/dist/
