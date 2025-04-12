@@ -1,5 +1,16 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const dotenv = require('dotenv');
 const path = require("path");
+
+// Load variables from .env file
+const env =  dotenv.config().parsed || {};
+
+// Convert env for Webpack's DefinePlugin
+const envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+}, {});
 
 module.exports = {
     mode: "development",
@@ -17,6 +28,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: "./src/template.html",
         }),
+        new webpack.DefinePlugin(envKeys),
     ],
     module: {
         rules: [
