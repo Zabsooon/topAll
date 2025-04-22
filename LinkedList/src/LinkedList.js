@@ -159,13 +159,16 @@ class LinkedList {
     {
         let string = "";
         let current = this.head;
+        if(current === null)
+            return null;
         while(current.next)
         {
             string += `{ ${current.value} } -> `;
             current = current.next;
         }
-        string += 'null';
+        string += `{ ${current.value} } -> null`;
         return string;
     }
 }
 
+export default LinkedList;
