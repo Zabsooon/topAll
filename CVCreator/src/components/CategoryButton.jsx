@@ -1,8 +1,8 @@
-function CategoryButton({ category }) {
+function CategoryButton({ category, onClickFunc }) {
 
     return (
         <>
-            <button>{category}</button>
+            <button onClick={() => onClickFunc(category)}>{category}</button>
         </>
     );
 }
