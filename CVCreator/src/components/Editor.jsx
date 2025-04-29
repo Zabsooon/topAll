@@ -2,35 +2,25 @@ import { useState } from "react";
 import Input from "./Input";
 import CategoryButton from "./CategoryButton";
 import InputPanel from "./InputPanel";
-import { addElement, createFieldsFromSchema, inputs } from "./inputtype";
+import { createFieldsFromSchema } from "./inputtype";
 
 function Editor() {
     const [inputCategory, setInputCategory] = useState(null);
+    const [inputs, setInputs] = useState([]);
 
-    let counter = 0;
-    for(let index in inputs) {
-        const { typeid, fields } = inputs[index];
-        console.log(typeid);
-        console.log(fields);
-        counter = index;
-    }
-    
-    addElement("experience");
-    addElement("education");
-    addElement("experience");
-    addElement("general");
-    addElement("general");
-    addElement("education");
+    const handleAddDataOnClick = (category) => {
+        if (!category) return;
 
-    for(let index in inputs) {
-        const { typeid, fields } = inputs[index];
-        console.log("after update");
-        console.log(index);
-        console.log(typeid);
-        console.log(fields);
+        const newInput = {
+            typeid: category,
+            fields: createFieldsFromSchema(category),
+        }
+
+        setInputs((prevInputs) => [...prevInputs, newInput]);
     }
 
-    
+    console.log(inputs);
+
 
     return (
         <>
@@ -47,7 +37,13 @@ function Editor() {
                 onClickFunc={setInputCategory} 
             />
 
-            <InputPanel inputCategory={inputCategory}/>
+            <InputPanel 
+                inputCategory={inputCategory}
+                buttonClickFunc={(e) => {
+                    e.preventDefault(); 
+                    handleAddDataOnClick(inputCategory)
+                }}
+            />
             
       </>
     );

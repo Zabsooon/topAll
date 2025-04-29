@@ -1,37 +1,40 @@
 import { useState } from "react";
 import Input from "./Input";
 
-function InputPanel({ inputCategory }) {
+function InputPanel({ inputCategory, buttonClickFunc }) {
 
     return (
-        <>
+        <div className="inputs">
             {inputCategory === 'general' ? (
-                <div className="inputs">
+                <form>
                     <Input label="First Name" />
                     <Input label="Last Name" />
                     <Input label="Email" />
                     <Input label="Phone" />
-                </div> 
+                    <button onClick={buttonClickFunc}>submit</button>
+                </form>
             ) : (inputCategory === 'education') ? (
-                <div className="inputs">
+                <form>
                     <Input label="School Name" />
                     <Input label="Title of Study" />
                     <Input label="Date" />
-                </div>
+                    <button onClick={buttonClickFunc}>submit</button>
+                </form>
             ) : (inputCategory === 'experience') ? (
-                <div className="inputs">
+                <form>
                     <Input label="Company Name" />
                     <Input label="Position title" />
                     <Input label="Main Responsibilities" />
                     <Input label="Date" />
-                </div>
+                    <button onClick={buttonClickFunc}>submit</button>
+                </form>
             ) : (
                 <div>
                     <h1>Choose Input Category</h1>
                 </div>
             )}
  
-        </>
+        </div>
     );
 }
 
