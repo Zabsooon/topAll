@@ -8,12 +8,12 @@ function Editor() {
     const [inputCategory, setInputCategory] = useState(null);
     const [inputs, setInputs] = useState([]);
 
-    const handleAddDataOnClick = (category) => {
+    const handleAddDataOnClick = (category, data) => {
         if (!category) return;
 
         const newInput = {
             typeid: category,
-            fields: createFieldsFromSchema(category),
+            fields: data,
         }
 
         setInputs((prevInputs) => [...prevInputs, newInput]);
@@ -39,10 +39,7 @@ function Editor() {
 
             <InputPanel 
                 inputCategory={inputCategory}
-                buttonClickFunc={(e) => {
-                    e.preventDefault(); 
-                    handleAddDataOnClick(inputCategory)
-                }}
+                buttonClickFunc={handleAddDataOnClick}
             />
             
       </>
