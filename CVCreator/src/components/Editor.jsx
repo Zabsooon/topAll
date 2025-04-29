@@ -1,41 +1,55 @@
 import { useState } from "react";
 import Input from "./Input";
 import CategoryButton from "./CategoryButton";
+import InputPanel from "./InputPanel";
+import { addElement, createFieldsFromSchema, inputs } from "./inputtype";
 
 function Editor() {
-    const [inputCategory, setInputCategory] = useState("general");
+    const [inputCategory, setInputCategory] = useState(null);
+
+    let counter = 0;
+    for(let index in inputs) {
+        const { typeid, fields } = inputs[index];
+        console.log(typeid);
+        console.log(fields);
+        counter = index;
+    }
+    
+    addElement("experience");
+    addElement("education");
+    addElement("experience");
+    addElement("general");
+    addElement("general");
+    addElement("education");
+
+    for(let index in inputs) {
+        const { typeid, fields } = inputs[index];
+        console.log("after update");
+        console.log(index);
+        console.log(typeid);
+        console.log(fields);
+    }
+
+    
 
     return (
         <>
-            <CategoryButton category="general" onClickFunc={setInputCategory} />
-            <CategoryButton category="education" onClickFunc={setInputCategory} />
-            <CategoryButton category="experience" onClickFunc={setInputCategory} />
-            {inputCategory === 'general' ? (
-                <div className="inputs">
-                    <Input label="First Name" />
-                    <Input label="Last Name" />
-                    <Input label="Email" />
-                    <Input label="Phone" />
-                </div> 
-            ) : (inputCategory === 'education') ? (
-                <div className="inputs">
-                    <Input label="School Name" />
-                    <Input label="Title of Study" />
-                    <Input label="Date" />
-                </div>
-            ) : (inputCategory === 'experience') ? (
-                <div className="inputs">
-                    <Input label="Company Name" />
-                    <Input label="Position title" />
-                    <Input label="Main Responsibilities" />
-                    <Input label="Date" />
-                </div>
-            ) : (
-                <div>
-                    <h1>Choose Input Category</h1>
-                </div>
-            )}
-       </>
+            <CategoryButton 
+                category="general" 
+                onClickFunc={setInputCategory} 
+            />
+            <CategoryButton 
+                category="education"
+                onClickFunc={setInputCategory} 
+            />
+            <CategoryButton 
+                category="experience" 
+                onClickFunc={setInputCategory} 
+            />
+
+            <InputPanel inputCategory={inputCategory}/>
+            
+      </>
     );
 }
 
