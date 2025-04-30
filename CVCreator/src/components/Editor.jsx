@@ -3,6 +3,7 @@ import Input from "./Input";
 import CategoryButton from "./CategoryButton";
 import InputPanel from "./InputPanel";
 import { createFieldsFromSchema } from "./inputtype";
+import Generator from "./Generator";
 
 function Editor() {
     const [inputCategory, setInputCategory] = useState(null);
@@ -18,9 +19,6 @@ function Editor() {
 
         setInputs((prevInputs) => [...prevInputs, newInput]);
     }
-
-    console.log(inputs);
-
 
     return (
         <>
@@ -41,7 +39,8 @@ function Editor() {
                 inputCategory={inputCategory}
                 buttonClickFunc={handleAddDataOnClick}
             />
-            
+
+            <Generator inputs={inputs}/>          
       </>
     );
 }
