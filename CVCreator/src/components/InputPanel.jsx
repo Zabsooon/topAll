@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Input from "./Input";
 import { createFieldsFromSchema } from "./inputtype";
+import '../styles/InputPanel.css'
 
 function InputPanel({ inputCategory, buttonClickFunc }) {
     const [formData, setFormData] = useState({
@@ -58,7 +59,7 @@ function InputPanel({ inputCategory, buttonClickFunc }) {
     }
 
     return (
-        <div className="inputs">
+        <div className="inputPanel">
             {inputCategory === 'general' ? (
                 <form>
                     <Input 

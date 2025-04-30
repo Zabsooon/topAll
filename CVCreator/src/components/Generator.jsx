@@ -1,3 +1,5 @@
+import '../styles/Generator.css';
+
 function Generator({ inputs }) {
     const filterInputs = (inputs, category) => {
         return inputs
@@ -18,11 +20,17 @@ function Generator({ inputs }) {
     };
 
     return (
-        <>
-            {renderFields(filterInputs(inputs, 'general'), 'h2')}
-            {renderFields(filterInputs(inputs, 'education'), 'h3')}
-            {renderFields(filterInputs(inputs, 'experience'), 'h5')}
-        </>
+        <div className="generator">
+            <div className="generalinfo">
+                {renderFields(filterInputs(inputs, 'general'), 'p')}
+            </div>
+            <div className="educationinfo">
+                {renderFields(filterInputs(inputs, 'education'), 'p')}
+            </div>
+            <div className="experienceinfo"> 
+                {renderFields(filterInputs(inputs, 'experience'), 'p')}
+            </div>
+        </div>
     );
 }
 

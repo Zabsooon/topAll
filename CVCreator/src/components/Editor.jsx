@@ -1,9 +1,8 @@
 import { useState } from "react";
-import Input from "./Input";
 import CategoryButton from "./CategoryButton";
 import InputPanel from "./InputPanel";
-import { createFieldsFromSchema } from "./inputtype";
 import Generator from "./Generator";
+import '../styles/Editor.css';
 
 function Editor() {
     const [inputCategory, setInputCategory] = useState(null);
@@ -21,7 +20,7 @@ function Editor() {
     }
 
     return (
-        <>
+        <div className="editor">
             <CategoryButton 
                 category="general" 
                 onClickFunc={setInputCategory} 
@@ -41,7 +40,7 @@ function Editor() {
             />
 
             <Generator inputs={inputs}/>          
-      </>
+      </div>
     );
 }
 
